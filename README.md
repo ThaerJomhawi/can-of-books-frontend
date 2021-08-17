@@ -19,3 +19,18 @@ React js , bootstrap , Auth0
 
 ## Credit and Collaborations
 Ashrf Obiedat - week 3 partner 
+
+
+
+###
+
+
+* Name of feature: **Authentication** 
+
+* Estimate of time needed to complete: 3 hours
+
+* Start time: 15/08/2021 4:00 pm 
+
+* Finish time: 16/08/2021 3:00 pm
+
+* Actual time needed to complete: 6 working hours in total 
