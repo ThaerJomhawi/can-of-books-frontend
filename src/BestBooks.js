@@ -27,19 +27,19 @@ class MyFavoriteBooks extends React.Component {
             url: "/auth",
           };
           axios(config)
-            .then((axiosResults) => console.log(axiosResults.data))
+            .then((axiosResults) => {
+              console.log(axiosResults.data);
+              const bookApi = `${process.env.REACT_APP_SERVER_URL}/books`;
+              axios.get(bookApi).then((res) => {
+                let books = res.data;
+                console.log(books);
+                this.setState({ books: books });
+              });
+            })
             .catch((err) => console.error(err));
         })
         .catch((err) => console.error(err));
     }
-    const bookApi = `${process.env.REACT_APP_SERVER_URL}/books`;
-    axios.get(bookApi).then((res) => {
-      console.log(res.data[0]);
-      let myBooksArr = [];
-      res.data.map((ele) => { myBooksArr.push(ele);
-      return myBooksArr;});
-      this.setState({ books: res.data[0] });
-    });
   };
 
   render() {
@@ -47,7 +47,14 @@ class MyFavoriteBooks extends React.Component {
       <Jumbotron>
         <h1>My Favorite Books</h1>
         <p>This is a collection of my favorite books</p>
-        <div>{this.state.books && <booksData books={this.state.books} />}</div>
+        {this.state.books.map((item) => (
+          <div>
+            <p>{item.userEmail}</p>
+            <h2>{item.bookTitle}</h2>
+            <p>{item.bookDescription}</p>
+            <h3>{item.bookStatus}</h3>
+          </div>
+        ))}
       </Jumbotron>
     );
   }
